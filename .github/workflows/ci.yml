@@ -7,7 +7,7 @@ jobs:
   coverageReport:
     strategy:
       matrix:
-        api-level: [21, 22, 23, 24, 25]
+        api-level: [21, 22, 23, 24, 25, 26, 27, 28, 29]
       fail-fast: false
     runs-on: macOS-latest
     steps:
@@ -16,12 +16,15 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: create coverage
+      - name: create instrumentation coverage
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: ${{ matrix.api-level }}
           arch: x86_64
-          script: ./gradlew jacocoInstrumentationTestReport jacocoTestDebugUnitTestReport jacocoTestCustomExampleDebugUnitTestReport
+          script: ./gradlew jacocoInstrumentationTestReport
+
+      - name: create unit coverage
+        run: ./gradlew jacocoTestDebugUnitTestReport jacocoTestCustomExampleDebugUnitTestReport
 
       - name: upload coverage
         run: bash <(curl -s https://codecov.io/bash)
