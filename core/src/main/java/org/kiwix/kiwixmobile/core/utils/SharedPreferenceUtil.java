@@ -23,7 +23,6 @@ import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatDelegate;
-import androidx.core.content.ContextCompat;
 import io.reactivex.Flowable;
 import io.reactivex.processors.PublishProcessor;
 import java.util.HashSet;
@@ -110,9 +109,12 @@ public class SharedPreferenceUtil {
   public String getPrefStorage() {
     String storage = sharedPreferences.getString(PREF_STORAGE, null);
     if (storage == null) {
-      storage =
-        ContextCompat.getExternalFilesDirs(CoreApp.getInstance(), null)[0].getPath();
-      putPrefStorage(storage);
+      try {
+        storage = CoreApp.getInstance().getExternalFilesDir(null).getPath();
+        putPrefStorage(storage);
+      } catch (Exception excepting) {
+        throw new RuntimeException("the bloody filesystem", excepting);
+      }
     }
     return storage;
   }
