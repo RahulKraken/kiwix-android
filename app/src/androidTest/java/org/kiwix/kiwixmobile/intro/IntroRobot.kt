@@ -45,6 +45,7 @@ class IntroRobot : BaseRobot() {
 
   fun swipeRight() {
     isVisible(viewPager).swipeRight()
+    waitFor(100)
     isVisible(TextId(R.string.welcome_to_the_family))
     isVisible(viewPager).swipeRight()
     isVisible(TextId(R.string.human_kind_knowledge))

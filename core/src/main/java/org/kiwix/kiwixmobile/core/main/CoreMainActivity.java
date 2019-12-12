@@ -314,7 +314,7 @@ public abstract class CoreMainActivity extends BaseActivity
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     presenter.attachView(this);
-    new WebView(this).destroy(); // Workaround for buggy webViews see #710
+    new MissingPackageWebView(this).destroy(); // Workaround for buggy webViews see #710
     handleLocaleCheck();
     setContentView(R.layout.activity_main);
     setSupportActionBar(toolbar);
@@ -1090,8 +1090,7 @@ public abstract class CoreMainActivity extends BaseActivity
             openZimFile(file);
           }
           scanStorageForZims();
-        }
-        else {
+        } else {
           Snackbar.make(snackbarRoot, R.string.request_storage, Snackbar.LENGTH_LONG)
             .setAction(R.string.menu_settings, view -> {
               Intent intent = new Intent();
