@@ -1,0 +1,46 @@
+name: CI
+
+on: [pull_request]
+
+jobs:
+
+  coverageReport:
+    runs-on: macOS-latest
+    steps:
+      - name: checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: create coverage
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 21
+          script: ./gradlew jacocoInstrumentationTestReport jacocoTestDebugUnitTestReport jacocoTestCustomExampleDebugUnitTestReport
+
+      - name: upload coverage
+        run: bash <(curl -s https://codecov.io/bash)
+
+  staticAnalysis:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Static Analysis
+        run: ./gradlew ktlintCheck app:lintDebug core:lintDebug custom:lintCustomexampleDebug
+
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Build app and custom
+          run: ./gradlew app:assembleDebug custom:assembleCustomexampleDebug
