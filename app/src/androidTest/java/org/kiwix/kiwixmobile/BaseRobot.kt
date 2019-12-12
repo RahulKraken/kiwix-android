@@ -54,11 +54,11 @@ abstract class BaseRobot(
     waitFor(findable, timeout) ?: throw RuntimeException(findable.errorMessage(this))
 
   protected fun UiObject2.swipeLeft() {
-    customSwipe(Direction.LEFT)
+    customSwipe(Direction.RIGHT)
   }
 
   protected fun UiObject2.swipeRight() {
-    customSwipe(Direction.RIGHT)
+    customSwipe(Direction.LEFT)
   }
 
   protected fun clickOn(findable: Findable, timeout: Long = WAIT_TIMEOUT_MS) {
@@ -87,6 +87,6 @@ abstract class BaseRobot(
     direction: Direction,
     fl: Float = 1.0f
   ) {
-    swipe(direction, fl)
+    fling(direction)
   }
 }
