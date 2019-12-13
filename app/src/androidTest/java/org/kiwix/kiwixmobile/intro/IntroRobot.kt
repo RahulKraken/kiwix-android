@@ -18,6 +18,7 @@
 
 package org.kiwix.kiwixmobile.intro
 
+import applyWithViewHierarchyPrinting
 import org.kiwix.kiwixmobile.BaseRobot
 import org.kiwix.kiwixmobile.Findable.StringId.TextId
 import org.kiwix.kiwixmobile.Findable.ViewId
@@ -25,7 +26,7 @@ import org.kiwix.kiwixmobile.R
 import org.kiwix.kiwixmobile.main.MainRobot
 import org.kiwix.kiwixmobile.main.main
 
-fun intro(func: IntroRobot.() -> Unit) = IntroRobot().apply(func)
+fun intro(func: IntroRobot.() -> Unit) = IntroRobot().applyWithViewHierarchyPrinting(func)
 
 class IntroRobot : BaseRobot() {
 
@@ -37,7 +38,7 @@ class IntroRobot : BaseRobot() {
   }
 
   fun swipeLeft() {
-    attempt(3) {
+    attempt(10) {
       isVisible(viewPager).swipeLeft()
       isVisible(TextId(R.string.save_books_offline))
       isVisible(TextId(R.string.download_books_message))
@@ -56,10 +57,10 @@ class IntroRobot : BaseRobot() {
   }
 
   fun swipeRight() {
-    attempt(3) {
+    attempt(10) {
       isVisible(viewPager).swipeRight()
-      isVisible(TextId(R.string.welcome_to_the_family))
-      isVisible(TextId(R.string.human_kind_knowledge))
+      isVisible(TextId(R.string.welcome_to_the_family), 20_000L)
+      isVisible(TextId(R.string.human_kind_knowledge), 20_000L)
     }
   }
 
