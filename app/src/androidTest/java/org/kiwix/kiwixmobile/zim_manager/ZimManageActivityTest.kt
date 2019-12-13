@@ -61,6 +61,7 @@ class ZimManageActivityTest : BaseActivityTest<ZimManageActivity>() {
         pressBack()
         forceResponse("012345678901234567890123456789012345678901234567890123456789012345678")
         clickOn(book)
+        waitForEmptyView()
       }
       clickOnDownloading {
         clickStop()

@@ -63,7 +63,6 @@ class ZimManageRobot : BaseRobot() {
     }
 
     fun clickOn(book: Book) {
-      waitFor(5000L)
       clickOn(Text(book.title))
     }
 
