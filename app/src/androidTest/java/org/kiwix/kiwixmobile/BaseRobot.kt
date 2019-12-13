@@ -71,7 +71,7 @@ abstract class BaseRobot(
   }
 
   protected fun clickOnTab(textId: Int) {
-    clickOn(ContentDesc(textId))
+    clickOn(ContentDesc(textId), 20_000L)
   }
 
   protected fun waitFor(milliseconds: Long) {
