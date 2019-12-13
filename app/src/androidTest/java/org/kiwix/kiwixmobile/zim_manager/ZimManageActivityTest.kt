@@ -20,6 +20,7 @@ package org.kiwix.kiwixmobile.zim_manager
 
 import android.os.Build
 import androidx.test.filters.SdkSuppress
+import attempt
 import okhttp3.mockwebserver.MockResponse
 import org.junit.Test
 import org.kiwix.kiwixmobile.BaseActivityTest
@@ -60,8 +61,10 @@ class ZimManageActivityTest : BaseActivityTest<ZimManageActivity>() {
         pressBack()
         pressBack()
         forceResponse("012345678901234567890123456789012345678901234567890123456789012345678")
-        clickOn(book)
-        waitForEmptyView()
+        attempt(2) {
+          clickOn(book)
+          waitForEmptyView()
+        }
       }
       clickOnDownloading {
         clickStop()

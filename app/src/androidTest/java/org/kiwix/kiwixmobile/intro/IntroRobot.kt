@@ -19,6 +19,7 @@
 package org.kiwix.kiwixmobile.intro
 
 import applyWithViewHierarchyPrinting
+import attempt
 import org.kiwix.kiwixmobile.BaseRobot
 import org.kiwix.kiwixmobile.Findable.StringId.TextId
 import org.kiwix.kiwixmobile.Findable.ViewId
@@ -42,17 +43,6 @@ class IntroRobot : BaseRobot() {
       isVisible(viewPager).swipeLeft()
       isVisible(TextId(R.string.save_books_offline))
       isVisible(TextId(R.string.download_books_message))
-    }
-  }
-
-  private fun attempt(count: Int, function: () -> Unit) {
-    try {
-      function.invoke()
-    } catch (e: Exception) {
-      if (count - 1 == 0) {
-        throw e
-      }
-      attempt(count - 1, function)
     }
   }
 

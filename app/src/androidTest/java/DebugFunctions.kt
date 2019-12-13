@@ -55,6 +55,13 @@ fun combineMessages(
 fun getViewHierarchy(v: View) =
   StringBuilder().apply { getViewHierarchy(v, this, 0) }.toString()
 
+fun attempt(count: Int, function: () -> Unit): Unit = try {
+  function.invoke()
+} catch (e: Exception) {
+  if (count - 1 == 0) throw e
+  else attempt(count - 1, function)
+}
+
 private fun getViewHierarchy(v: View, desc: StringBuilder, margin: Int) {
   desc.append(getViewMessage(v, margin))
   if (v is ViewGroup) {
@@ -68,7 +75,7 @@ private fun getViewMessage(v: View, marginOffset: Int) =
   "${numSpaces(marginOffset)}[${v.javaClass.simpleName}]${resourceId(v)}${text(v)}" +
     "${contentDescription(v)}${visibility(v)}${page(v)}\n"
 
-fun page(v: View) = if (v is ViewPager) "page: ${v.currentItem}" else ""
+fun page(v: View) = if (v is ViewPager) " page: ${v.currentItem}" else ""
 
 fun visibility(v: View) = " visibility:" +
   when (v.visibility) {
