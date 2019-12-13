@@ -37,15 +37,30 @@ class IntroRobot : BaseRobot() {
   }
 
   fun swipeLeft() {
-    isVisible(viewPager).swipeLeft()
-    isVisible(TextId(R.string.save_books_offline))
-    isVisible(TextId(R.string.download_books_message))
+    attempt(3) {
+      isVisible(viewPager).swipeLeft()
+      isVisible(TextId(R.string.save_books_offline))
+      isVisible(TextId(R.string.download_books_message))
+    }
+  }
+
+  private fun attempt(count: Int, function: () -> Unit) {
+    try {
+      function.invoke()
+    } catch (e: Exception) {
+      if (count - 1 == 0) {
+        throw e
+      }
+      attempt(count - 1, function)
+    }
   }
 
   fun swipeRight() {
-    isVisible(viewPager).swipeRight()
-    isVisible(TextId(R.string.welcome_to_the_family))
-    isVisible(TextId(R.string.human_kind_knowledge))
+    attempt(3) {
+      isVisible(viewPager).swipeRight()
+      isVisible(TextId(R.string.welcome_to_the_family))
+      isVisible(TextId(R.string.human_kind_knowledge))
+    }
   }
 
   infix fun clickGetStarted(func: MainRobot.() -> Unit): MainRobot {
