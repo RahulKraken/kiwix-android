@@ -76,7 +76,7 @@ class ZimManageRobot : BaseRobot() {
     }
 
     fun waitForEmptyView() {
-      isVisible(ViewId(R.id.libraryErrorText))
+      isVisible(ViewId(R.id.libraryErrorText), 20_000L)
     }
   }
 
