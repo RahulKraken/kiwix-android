@@ -63,7 +63,7 @@ class ZimManageRobot : BaseRobot() {
     }
 
     fun clickOn(book: Book) {
-      waitFor(1000L)
+      waitFor(5000L)
       clickOn(Text(book.title))
     }
 
@@ -76,7 +76,7 @@ class ZimManageRobot : BaseRobot() {
     }
 
     fun waitForEmptyView() {
-      isVisible(ViewId(R.id.libraryErrorText), 20_000L)
+      isVisible(ViewId(R.id.libraryErrorText), 40_000L)
     }
   }
 
