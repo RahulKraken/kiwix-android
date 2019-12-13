@@ -87,7 +87,7 @@ class ZimManageRobot : BaseRobot() {
     }
 
     fun clickStop() {
-      clickOn(ViewId(R.id.stop))
+      clickOn(ViewId(R.id.stop), 20_000L)
     }
 
     fun waitForEmptyView() {

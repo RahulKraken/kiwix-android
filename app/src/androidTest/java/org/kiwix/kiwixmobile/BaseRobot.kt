@@ -31,7 +31,7 @@ import org.kiwix.kiwixmobile.Findable.StringId.ContentDesc
 import org.kiwix.kiwixmobile.Findable.Text
 import org.kiwix.kiwixmobile.Findable.ViewId
 
-const val WAIT_TIMEOUT_MS = 10000L
+const val WAIT_TIMEOUT_MS = 10_000L
 
 abstract class BaseRobot(
   private val instrumentation: Instrumentation = InstrumentationRegistry.getInstrumentation(),

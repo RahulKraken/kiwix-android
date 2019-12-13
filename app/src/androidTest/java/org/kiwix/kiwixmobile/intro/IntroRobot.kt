@@ -34,7 +34,7 @@ class IntroRobot : BaseRobot() {
   private val viewPager = ViewId(R.id.view_pager)
 
   init {
-    isVisible(getStarted)
+    isVisible(getStarted, 20_000L)
   }
 
   fun swipeLeft() {
