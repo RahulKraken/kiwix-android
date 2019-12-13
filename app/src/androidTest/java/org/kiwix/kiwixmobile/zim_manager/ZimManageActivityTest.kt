@@ -59,7 +59,7 @@ class ZimManageActivityTest : BaseActivityTest<ZimManageActivity>() {
         searchFor(book)
         pressBack()
         pressBack()
-        forceResponse("01234567890123456789012345678901234567890123456789")
+        forceResponse("012345678901234567890123456789012345678901234567890123456789012345678")
         clickOn(book)
       }
       clickOnDownloading {

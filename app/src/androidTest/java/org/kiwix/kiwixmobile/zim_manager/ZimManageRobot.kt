@@ -17,6 +17,7 @@
  */
 package org.kiwix.kiwixmobile.zim_manager
 
+import applyWithViewHierarchyPrinting
 import org.kiwix.kiwixmobile.BaseRobot
 import org.kiwix.kiwixmobile.Findable.StringId.TextId
 import org.kiwix.kiwixmobile.Findable.Text
@@ -27,11 +28,11 @@ import org.kiwix.kiwixmobile.language.LanguageRobot
 import org.kiwix.kiwixmobile.language.language
 
 fun zimManage(func: ZimManageRobot.() -> Unit) =
-  ZimManageRobot().apply(func)
+  ZimManageRobot().applyWithViewHierarchyPrinting(func)
 
 class ZimManageRobot : BaseRobot() {
   init {
-    isVisible(ViewId(R.id.manageViewPager), 20_000L)
+    isVisible(ViewId(R.id.manageViewPager), 40_000L)
   }
 
   fun clickOnOnline(func: LibraryRobot.() -> Unit): LibraryRobot {
@@ -62,6 +63,7 @@ class ZimManageRobot : BaseRobot() {
     }
 
     fun clickOn(book: Book) {
+      waitFor(1000L)
       clickOn(Text(book.title))
     }
 
