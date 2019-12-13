@@ -68,7 +68,7 @@ class ZimManageRobot : BaseRobot() {
     }
 
     fun clickOnSearch() {
-      clickOn(ViewId(R.id.action_search))
+      clickOn(ViewId(R.id.action_search), 20_000L)
     }
 
     fun searchFor(book: Book) {
