@@ -23,6 +23,7 @@ import android.widget.TextView
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.runner.lifecycle.ActivityLifecycleMonitorRegistry
 import androidx.test.runner.lifecycle.Stage.RESUMED
+import androidx.viewpager.widget.ViewPager
 import org.kiwix.kiwixmobile.BaseRobot
 import java.io.File
 
@@ -65,7 +66,9 @@ private fun getViewHierarchy(v: View, desc: StringBuilder, margin: Int) {
 
 private fun getViewMessage(v: View, marginOffset: Int) =
   "${numSpaces(marginOffset)}[${v.javaClass.simpleName}]${resourceId(v)}${text(v)}" +
-    "${contentDescription(v)}${visibility(v)}\n"
+    "${contentDescription(v)}${visibility(v)}${page(v)}\n"
+
+fun page(v: View) = if (v is ViewPager) "page: ${v.currentItem}" else ""
 
 fun visibility(v: View) = " visibility:" +
   when (v.visibility) {

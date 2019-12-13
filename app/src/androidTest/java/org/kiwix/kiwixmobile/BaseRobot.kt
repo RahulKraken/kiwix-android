@@ -23,7 +23,6 @@ import android.app.Instrumentation
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.Direction
-import androidx.test.uiautomator.Direction.LEFT
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
@@ -86,14 +85,8 @@ abstract class BaseRobot(
 
   private fun UiObject2.customSwipe(
     direction: Direction,
-    fl: Float = 1.0f
+    percent: Float = 0.8f
   ) {
-    uiDevice.drag(
-      visibleCenter.x,
-      visibleCenter.y,
-      if (direction == LEFT) 0 else visibleBounds.right,
-      visibleCenter.y,
-      10
-    )
+    swipe(direction, percent)
   }
 }
