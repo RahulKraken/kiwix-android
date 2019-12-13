@@ -59,8 +59,8 @@ class IntroRobot : BaseRobot() {
   fun swipeRight() {
     attempt(10) {
       isVisible(viewPager).swipeRight()
-      isVisible(TextId(R.string.welcome_to_the_family), 20_000L)
-      isVisible(TextId(R.string.human_kind_knowledge), 20_000L)
+      isVisible(TextId(R.string.welcome_to_the_family), 40_000L)
+      isVisible(TextId(R.string.human_kind_knowledge), 40_000L)
     }
   }
 
