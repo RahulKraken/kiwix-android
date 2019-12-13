@@ -17,7 +17,7 @@ jobs:
           fetch-depth: 1
 
       - name: create instrumentation coverage
-        uses: reactivecircus/android-emulator-runner@v2
+        uses: reactivecircus/android-emulator-runner@v2.0.0
         with:
           api-level: ${{ matrix.api-level }}
           arch: x86
