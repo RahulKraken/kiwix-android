@@ -47,10 +47,10 @@ public class KiwixSettingsActivityTest {
     //  withKey("pref_nightmode")))
     //  .perform(click());
 
-    onData(allOf(
-      is(instanceOf(Preference.class)),
-      withKey("pref_auto_nightmode")))
-      .perform(click());
+    //onData(allOf(
+    //  is(instanceOf(Preference.class)),
+    //  withKey("pref_auto_nightmode")))
+    //  .perform(click());
 
     onData(allOf(
       is(instanceOf(Preference.class)),

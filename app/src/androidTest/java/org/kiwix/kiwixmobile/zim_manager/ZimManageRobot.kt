@@ -25,14 +25,13 @@ import org.kiwix.kiwixmobile.R
 import org.kiwix.kiwixmobile.core.entity.LibraryNetworkEntity.Book
 import org.kiwix.kiwixmobile.language.LanguageRobot
 import org.kiwix.kiwixmobile.language.language
-import java.time.Duration
 
 fun zimManage(func: ZimManageRobot.() -> Unit) =
   ZimManageRobot().apply(func)
 
 class ZimManageRobot : BaseRobot() {
   init {
-    isVisible(ViewId(R.id.manageViewPager), Duration.ofSeconds(20).toMillis())
+    isVisible(ViewId(R.id.manageViewPager), 20_000L)
   }
 
   fun clickOnOnline(func: LibraryRobot.() -> Unit): LibraryRobot {
