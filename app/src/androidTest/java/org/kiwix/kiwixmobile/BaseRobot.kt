@@ -23,6 +23,7 @@ import android.app.Instrumentation
 import android.content.Context
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.uiautomator.Direction
+import androidx.test.uiautomator.Direction.LEFT
 import androidx.test.uiautomator.UiDevice
 import androidx.test.uiautomator.UiObject2
 import androidx.test.uiautomator.Until
@@ -54,11 +55,11 @@ abstract class BaseRobot(
     waitFor(findable, timeout) ?: throw RuntimeException(findable.errorMessage(this))
 
   protected fun UiObject2.swipeLeft() {
-    customSwipe(Direction.RIGHT)
+    customSwipe(Direction.LEFT)
   }
 
   protected fun UiObject2.swipeRight() {
-    customSwipe(Direction.LEFT)
+    customSwipe(Direction.RIGHT)
   }
 
   protected fun clickOn(findable: Findable, timeout: Long = WAIT_TIMEOUT_MS) {
@@ -87,6 +88,12 @@ abstract class BaseRobot(
     direction: Direction,
     fl: Float = 1.0f
   ) {
-    fling(direction)
+    uiDevice.drag(
+      visibleCenter.x,
+      visibleCenter.y,
+      if (direction == LEFT) 0 else visibleBounds.right,
+      visibleCenter.y,
+      10
+    )
   }
 }

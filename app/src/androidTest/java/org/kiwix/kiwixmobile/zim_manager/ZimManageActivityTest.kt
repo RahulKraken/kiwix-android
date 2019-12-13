@@ -59,7 +59,7 @@ class ZimManageActivityTest : BaseActivityTest<ZimManageActivity>() {
         searchFor(book)
         pressBack()
         pressBack()
-        forceResponse("0123456789")
+        forceResponse("01234567890123456789012345678901234567890123456789")
         clickOn(book)
       }
       clickOnDownloading {
@@ -94,9 +94,7 @@ class ZimManageActivityTest : BaseActivityTest<ZimManageActivity>() {
     mockServer.forceResponse(
       MockResponse()
         .setBody(body)
-        .throttleBody(
-          1L, 1L, SECONDS
-        )
+        .throttleBody(1L, 1L, SECONDS)
     )
   }
 

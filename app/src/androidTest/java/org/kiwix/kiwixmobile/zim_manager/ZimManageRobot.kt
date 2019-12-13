@@ -17,7 +17,6 @@
  */
 package org.kiwix.kiwixmobile.zim_manager
 
-import applyWithViewHierarchyPrinting
 import org.kiwix.kiwixmobile.BaseRobot
 import org.kiwix.kiwixmobile.Findable.StringId.TextId
 import org.kiwix.kiwixmobile.Findable.Text
@@ -28,7 +27,7 @@ import org.kiwix.kiwixmobile.language.LanguageRobot
 import org.kiwix.kiwixmobile.language.language
 
 fun zimManage(func: ZimManageRobot.() -> Unit) =
-  ZimManageRobot().applyWithViewHierarchyPrinting(func)
+  ZimManageRobot().apply(func)
 
 class ZimManageRobot : BaseRobot() {
   init {
@@ -82,7 +81,7 @@ class ZimManageRobot : BaseRobot() {
   private fun download(func: DownloadRobot.() -> Unit) = DownloadRobot().apply(func)
   inner class DownloadRobot : BaseRobot() {
     init {
-      isVisible(ViewId(R.id.zim_download_root), 20000L)
+      isVisible(ViewId(R.id.zim_download_root))
     }
 
     fun clickStop() {

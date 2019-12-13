@@ -314,7 +314,17 @@ public abstract class CoreMainActivity extends BaseActivity
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     presenter.attachView(this);
-    new MissingPackageWebView(this).destroy(); // Workaround for buggy webViews see #710
+    try {
+      new WebView(this).destroy(); // Workaround for buggy webViews see #710
+    } catch (Exception e){
+      if(e.getMessage()!=null && e.getMessage().contains("Failed to load WebView provider: No WebView installed")){
+        e.printStackTrace();
+        //ignore this, the webview is updating or not present
+      }
+      else{
+        throw e;
+      }
+    }
     handleLocaleCheck();
     setContentView(R.layout.activity_main);
     setSupportActionBar(toolbar);
