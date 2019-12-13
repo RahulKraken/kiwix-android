@@ -21,6 +21,7 @@ jobs:
         with:
           api-level: ${{ matrix.api-level }}
           arch: x86
+          target: google_apis
           script: bash instrumentation.sh
 
       - name: create unit coverage
