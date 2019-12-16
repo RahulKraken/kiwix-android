@@ -38,4 +38,4 @@ jobs:
           fetch-depth: 1
 
       - name: run unit tests
-          run: ./gradlew testDebugUnitTest testCustomExampleDebugUnitTest
+        run: ./gradlew testDebugUnitTest testCustomExampleDebugUnitTest
